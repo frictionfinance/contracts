@@ -682,6 +682,7 @@ contract Tao is Context, IBEP20, Ownable {
      * - `spender` cannot be the zero address.
      */
     function approve(address spender, uint256 amount) public override returns (bool) {
+    require(_allowances[msg.sender][spender] == 0);
         _approve(_msgSender(), spender, amount);
         return true;
     }
