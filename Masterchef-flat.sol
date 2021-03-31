@@ -1159,6 +1159,7 @@ pragma solidity 0.6.12;
 contract MasterChef is Ownable {
     using SafeMath for uint256;
     using SafeBEP20 for IBEP20;
+    using SafeBEP20 for TaoToken;
 
     // Info of each user.
     struct UserInfo {
@@ -1346,9 +1347,7 @@ contract MasterChef is Ownable {
 
     // Safe TAO transfer function, just in case if rounding error causes pool to not have enough TAOs.
     function safeTaoTransfer(address _to, uint256 _amount) internal {
-            bool transferSuccess = false;
-            transferSuccess = TAO.transfer(_to, _amount);
-            require(transferSuccess, "safeTaoTransfer: transfer failed");
+            TAO.safeTransfer(_to, _amount);
     }
 
     // Update dev address by the previous dev.
