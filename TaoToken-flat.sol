@@ -731,6 +731,7 @@ contract Tao is Context, IBEP20, Ownable {
     function _approve(address owner, address spender, uint256 amount) private {
         require(owner != address(0), "BEB20: approve from the zero address");
         require(spender != address(0), "BEP20: approve to the zero address");
+        require(allowed[msg.sender][_spender] == 0)
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
